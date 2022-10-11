@@ -12,10 +12,29 @@ const Feedback = () => {
     });
     // let API_KEY = '5f11970a-cd7d-4521-a978-ee147a3982d1';
 
+    let testAtc = {
+    /* Numbers */
+    "Product ID" : 1337,
+    "Price"      : 39.80,
+    "Quantity"   : 1,
+
+    /* Strings */
+    "Product"    : "Givenchy Pour Homme Cologne",
+    "Category"   : "Fragrance",
+    "Currency"   : "USD",
+
+    /* Boolean */
+    "Discounted" : true
+}
+
     const handleChange = (e) =>{
      setInfo((prev)=>{
        return ({...prev, [e.target.name]:e.target.value})
      })
+    }
+
+    const atc = () =>{
+      window.webengage.track("Added To Cart", testAtc)
     }
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -33,6 +52,8 @@ const Feedback = () => {
           <input type="text" placeholder='Last Name' name='lastName' onChange={handleChange}/>
           <button type='submit' id="btnSubmit">Submit</button>
         </form>
+
+        <button style={{marginTop:"20px"}} onClick={atc}>Test Add to cart event</button>
     </div>
   )
   
