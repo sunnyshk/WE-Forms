@@ -39,9 +39,9 @@ const Feedback = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         window.webengage.user.login(info.userId)
-        window.webengage.user.setAttribute('usr_email', info.firstName);
-        window.webengage.user.setAttribute('usr_lastname', info.lastName);
-        localStorage.setItem('userInfo', JSON.stringify(info))
+        window.webengage.user.setAttribute('we_first_name', info.firstName);
+        window.webengage.user.setAttribute('we_last_name', info.lastName);
+        // localStorage.setItem('userInfo', JSON.stringify(info))
         
     }
   return (
