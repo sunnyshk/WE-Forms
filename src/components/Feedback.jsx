@@ -4,11 +4,11 @@ import axios from 'axios';
 let data = JSON.parse(localStorage.getItem("userInfo")) || [];
 
 const Feedback = () => {
-  
+  const [trigger, setTrigger] = useState(false);
   const {appCodeName, appName, language, vendor, appVersion, myPage = 'Feedback'} = window.navigator; 
   function viewd(){
     // console.log("Page Viewed");
-    console.log(appCodeName,appName, myPage)
+    // console.log(appCodeName,appName, myPage)
     window.webengage.track('Page Viewed',{
       "Viewed Page":myPage,
       "Browser":appCodeName,
@@ -20,7 +20,7 @@ const Feedback = () => {
   }
   useEffect(()=>{
    window.onload =  viewd()
-  },[])
+  },[trigger])
     const [info, setInfo] = useState({
         userId:'',
         firstName:'',
@@ -55,6 +55,7 @@ const Feedback = () => {
     }
     const handleSubmit = async (e) =>{
         e.preventDefault();
+        setTrigger(!trigger);
         window.webengage.user.login(info.userId);
         window.webengage.user.setAttribute('we_first_name', info.firstName);
         window.webengage.user.setAttribute('we_last_name', info.lastName);
