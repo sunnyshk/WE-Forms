@@ -1,9 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, version } from 'react'
 import axios from 'axios';
 
 let data = JSON.parse(localStorage.getItem("userInfo")) || [];
 
 const Feedback = () => {
+  
+  const {appCodeName, appName, language, vendor, appVersion, myPage = 'Feedback'} = window.navigator; 
+  function viewd(){
+    // console.log("Page Viewed");
+    console.log(appCodeName,appName, myPage)
+    window.webengage.track('Page Viewed',{
+      "Viewed Page":myPage,
+      "Browser":appCodeName,
+      "Dev":appName,
+      "Language":language,
+      "Browser V":appVersion,
+      "By":vendor
+    })
+  }
+  useEffect(()=>{
+   window.onload =  viewd()
+  },[])
     const [info, setInfo] = useState({
         userId:'',
         firstName:'',
@@ -38,10 +55,10 @@ const Feedback = () => {
     }
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        window.webengage.user.login(info.userId)
+        window.webengage.user.login(info.userId);
         window.webengage.user.setAttribute('we_first_name', info.firstName);
         window.webengage.user.setAttribute('we_last_name', info.lastName);
-        // localStorage.setItem('userInfo', JSON.stringify(info))
+        // localStorage.setItem('userInfo', JSON.stringify(info));
         
     }
   return (
