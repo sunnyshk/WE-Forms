@@ -19,7 +19,9 @@ const Feedback = () => {
     })
   }
   useEffect(()=>{
-   window.onload =  viewd()
+    if(trigger){
+      window.onload =  viewd()
+    }
   },[trigger])
     const [info, setInfo] = useState({
         userId:'',
