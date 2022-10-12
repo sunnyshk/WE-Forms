@@ -7,8 +7,6 @@ const Feedback = () => {
   const [trigger, setTrigger] = useState(false);
   const {appCodeName, appName, language, vendor, appVersion, myPage = 'Feedback'} = window.navigator; 
   function viewd(){
-    // console.log("Page Viewed");
-    // console.log(appCodeName,appName, myPage)
     window.webengage.track('Page Viewed',{
       "Viewed Page":myPage,
       "Browser":appCodeName,
@@ -57,8 +55,8 @@ const Feedback = () => {
     }
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        setTrigger(!trigger);
         window.webengage.user.login(info.userId);
+        setTrigger(!trigger);
         window.webengage.user.setAttribute('we_first_name', info.firstName);
         window.webengage.user.setAttribute('we_last_name', info.lastName);
         // localStorage.setItem('userInfo', JSON.stringify(info));
