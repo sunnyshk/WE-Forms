@@ -17,7 +17,7 @@ const NavBar = () => {
 
         </ul>
 
-        <button onClick={logout}>Logout</button>
+        <button style={{border:"none", fontWeight:"bold", borderRadius:"5px" ,padding:"10px", backgroundColor:"black", color:"white"}} onClick={logout}>Logout</button>
     </div>
   )
 }
